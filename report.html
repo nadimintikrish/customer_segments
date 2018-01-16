@@ -12184,26 +12184,33 @@ Name: 75%, dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
 
-<span class="c1"># TODO: Make a copy of the DataFrame, using the &#39;drop&#39; function to drop the given feature</span>
-<span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Delicatessen&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">tree_Regressor</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
 
-<span class="c1"># TODO: Split the data into training and testing sets(0.25) using the given feature as the target</span>
-<span class="c1"># Set a random state.</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Delicatessen&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1191</span><span class="p">)</span>
+        <span class="c1"># TODO: Make a copy of the DataFrame, using the &#39;drop&#39; function to drop the given feature</span>
+        <span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">column</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># TODO: Create a decision tree regressor and fit it to the training set</span>
-<span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1191</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+        <span class="c1"># TODO: Split the data into training and testing sets(0.25) using the given feature as the target</span>
+        <span class="c1"># Set a random state.</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1191</span><span class="p">)</span>
 
-<span class="c1"># TODO: Report the score of the prediction using the testing set</span>
-<span class="n">score</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+        <span class="c1"># TODO: Create a decision tree regressor and fit it to the training set</span>
+        <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1191</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 
-<span class="k">print</span> <span class="s2">&quot;The R2 score of the Tree regressor is {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+        <span class="c1"># TODO: Report the score of the prediction using the testing set</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
+
+        <span class="k">print</span> <span class="s2">&quot;The R2 score of the Tree regressor is {} for Variable {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">,</span><span class="n">column</span><span class="p">)</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">tree_Regressor</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12218,7 +12225,12 @@ Name: 75%, dtype: float64
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The R2 score of the Tree regressor is -7.58995327528
+<pre>The R2 score of the Tree regressor is -0.240709682619 for Variable Fresh
+The R2 score of the Tree regressor is 0.175347805844 for Variable Milk
+The R2 score of the Tree regressor is 0.73420824093 for Variable Grocery
+The R2 score of the Tree regressor is -0.473471986471 for Variable Frozen
+The R2 score of the Tree regressor is 0.755925628811 for Variable Detergents_Paper
+The R2 score of the Tree regressor is -7.58995327528 for Variable Delicatessen
 </pre>
 </div>
 </div>
@@ -12249,9 +12261,9 @@ Name: 75%, dtype: float64
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ol>
-<li>I tried to predict "Delicatessen".</li>
-<li>The obtained R2 value is -7.58995327528</li>
-<li>This negative r2 value specifies that the model is not right fit with "Delicatessen" as a feature.</li>
+<li>I tried to predict each vaiable from the rest of the data.</li>
+<li>The obtained R2 vaue for all the variables are shown above.</li>
+<li>Based on the R2 values obtained above, it seems that Grocery and Detergents_paper have R2 values close to 1. This implies that these variables are easy to predict from the balance of the data and are least necessary for identifying the spending habits.</li>
 </ol>
 
 </div>
@@ -12269,7 +12281,7 @@ Name: 75%, dtype: float64
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Produce a scatter matrix for each pair of features in the data</span>
@@ -14027,7 +14039,7 @@ c84555xzzpXhnSXnnHPOOeecK8M7S84555xzzjlXxv8D7iIZnX3VP8AAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span><span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -14042,12 +14054,12 @@ c84555xzzpXhnSXnnHPOOeecK8M7S84555xzzjlXxv8D7iIZnX3VP8AAAAAASUVORK5CYII=
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x108d7358&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x113aef98&gt;</pre>
 </div>
 
 </div>
@@ -14509,7 +14521,7 @@ rkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Scale the data using the natural logarithm</span>
@@ -18581,7 +18593,7 @@ UOvgAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the log-transformed sample data</span>
@@ -18687,7 +18699,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># For each feature find the data points with extreme high or low values</span>
@@ -19503,7 +19515,7 @@ Once you have performed this implementation, the dataset will be stored in the v
  66: An outlier for Delicatessen and Fresh
  65: An outlier for Frozen and Fresh</p>
 </li>
-<li><p>The above mentioned outliers should be removed because they are quite abnormal in multiple features. Hence, it is highly likely that they are produced by some error.</p>
+<li><p>Out of all the outliers detected, only 5 have been chosen to drop because the rest of the outlier data could lead to potential loss of the data. only these 5 outliers have been re-appeared in more than one feature which implies that they are highly likely to skew the results.Hence, it is a good choice to drop these outliers before clustering or dimensional reduction.</p>
 </li>
 <li><p>All the outliers were defined here statistcally by considering IQR. Those which doesn't fall under IQR are labeled as outliers for that specific feature. However, in the case of multiple features, it is always good choice for the outlier which are highly likely in multiple features.</p>
 </li>
@@ -19539,7 +19551,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
@@ -19896,13 +19908,13 @@ L7ocoKfqW8AAAAAASUVORK5CYII=
 </li>
 <li><p>The first four dimensions in terms of customer spending can be represented as:-</p>
 <ul>
-<li><p>1st Component: This component has a higher positive weighed feature towards Fresh followed by increase in feature weights towards other features. This compoenent relatively predicts well with all the components and doesn't show a negative impact towards any of the feature. This pattern probably represents Restaurants.</p>
+<li><p>1st Component: It has a higher absolute feature weight towards Detergent_Paper followed by Milk and Grocery. This Patter signifies the the customers at Hyper Market.</p>
 </li>
-<li><p>2nd Component: This component has a high positive weighed feature towards Detergents_Paper followed by increase in feature weights towards Milk, Grocery and Delicatessen. It has a negative impacting weighting Fresh and Frozen. This pattern is probably observed in convenient stores.</p>
+<li><p>2nd Component: This component has a higher absolute weighed feature towards Fresh followed by increase in feature weights towards Frozen and Delicatessen. However, It badly predicts Detergents_paper and grocery due to low absolute weights. This pattern is probably observed Hotels/Restaurants.</p>
 </li>
-<li><p>3rd Component: This component has a high positive weighed feature towards Delicatessen followed by increase in feature weights towards Frozen and a slight increase in Milk.However, It has a negative impacting weighting Fresh and Detergents_paper . This pattern can be observed in Bakeries or Delis.</p>
+<li><p>3rd Component: This component has a high absolute weighed feature towards Fresh followed by increase in feature weights towards Delicatessen and a slight increase in Frozen.However, it badly predicts milk and grocery. This pattern can be observed in convenient stores .</p>
 </li>
-<li><p>4th Component: This component has a high positive weighed feature towards Frozen items followed by increase in feature weights towards Detergent_papers and grocery and a slight increase in Milk. However, It has a negative impact in  weighting Fresh and Delicatessen . This pattern can be observed in Frozen Stores or Fish markets or Meat Markets.</p>
+<li><p>4th Component: This component has a high absolute weighed feature towards Frozen items followed by increase in feature weights towards Delicatessen and slight increase in Fresh. This pattern can be observed in Frozen Stores or Fish markets or Meat Markets.</p>
 </li>
 </ul>
 </li>
@@ -22253,14 +22265,29 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<ol>
-<li><p>Sample point 0 is considered as a Hyper Market instead of Restaurant/caffe from observation. This is possibly a miss classification from the model.</p>
+<ul>
+<li><p>Sample Point 0:</p>
+
+<pre><code>  Initial assumption: Restaurant/caffe
+  Model assesment: Hyper Market
+  Comments: This is possibly a miss classification from the model.I assumed a predominance of Food and Milk as exclusive to Restaurants, but the model seems to suggest otherwise.</code></pre>
 </li>
-<li><p>Sample point 1 is classified correctly as hypermarket dealer and aligns pefectly with my assumption.</p>
+<li><p>Sample Point 1:</p>
+
+<pre><code>  Initial Assumption: Hyper market
+  Model assessment: Hyper Market
+  Comments: My initial assumption aligns perfectly with the model assesment.</code></pre>
 </li>
-<li><p>Sample point 3 is also classified as my initial guess as a possible small scale restaurant.</p>
+<li><p>Sample Point 2:</p>
+
+<pre><code>  Previous assessment: Small Scale Restaurant.
+  Model assessment: Restaurant
+  Comments: My initial assumption aligns perfectly with the model assesment.
+
+</code></pre>
+<p>Discussion: The Model did fairly good job in interpreting the sample points.The model seems to take the opinion that a customer with a variety of prominent features - Fresh, Milk, Grocery, Frozen etc suggests that it is Cluster 1 (Supermarket or Retailer of some sort). Customers with a particular focus on a single feature - Fresh - are regarded as Cluster 0 (Restaurant/Cafes). However, going with the same assumption I had assumed the sample point 0 but the model predicted badly.</p>
 </li>
-</ol>
+</ul>
 
 </div>
 </div>
